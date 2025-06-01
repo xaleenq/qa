@@ -1,0 +1,43 @@
+mkdir wordpress-mysql
+cd wordpress-mysql
+touch docker-compose.yml
+
+version: '3.8'
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress-data:/var/www/html
+      - shared-logs:/var/log/shared # Общий том для логов
+    depends_on:
+      - mysql
+    networks:
+      - wp-network
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - shared-logs:/var/log/shared # Общий том для логов
+    networks:
+      - wp-network
+networks:
+  wp-network:
+    driver: bridge
+volumes:
+  wordpress-data:
+  mysql-data:
+  shared-logs: # Новый том для взаимодействия
+
+http://localhost:8000
