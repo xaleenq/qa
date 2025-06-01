@@ -1,6 +1,9 @@
 mkdir wordpress-mysql
 cd wordpress-mysql
 touch docker-compose.yml
+nano docker-compose.yml
+cat docker-compose.yml
+docker-compose up -d
 
 version: '3.8'
 services:
@@ -38,6 +41,6 @@ networks:
 volumes:
   wordpress-data:
   mysql-data:
-  shared-logs: # Новый том для взаимодействия
+  shared-logs: # Новый том для взаимодействи
 
 http://localhost:8000
