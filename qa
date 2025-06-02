@@ -2,9 +2,10 @@ mkdir wordpress-mysql
 cd wordpress-mysql
 touch docker-compose.yml
 nano docker-compose.yml
-cat docker-compose.yml
-docker-compose up -d
 
+
+
+вставить код:
 version: '3.8'
 services:
   wordpress:
@@ -43,4 +44,13 @@ volumes:
   mysql-data:
   shared-logs: # Новый том для взаимодействи
 
+
+
+cat docker-compose.yml
+docker-compose up -d
+переходим
 http://localhost:8000
+
+ссылки:
+WordPress: https://hub.docker.com/_/wordpress
+MySQL: https://hub.docker.com/_/mysql
